@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/sky">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/welcomeScreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/krkloudy"
+                android:gravity="center"
+                android:text="PICloud"
+                android:textColor="@color/cloud"
+                android:textSize="60sp" />
+
+            <TextView
+                android:id="@+id/pickoption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/krcloudnine"
+                android:text="Pick an Option"
+                android:textAlignment="center"
+                android:textColor="@color/cloud"
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/selectPhotoButton"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/gallery_selector" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/krcloudnine"
+                android:text="Or"
+                android:textAlignment="center"
+                android:textColor="@color/cloud"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/takePhotoButton"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/camera_selector" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/editScreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"></LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="628dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/back_selector" />
+
+            <Button
+                android:id="@+id/greyscale"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="B/W"
+                android:background="@drawable/oval" />
+
+            <Button
+                android:id="@+id/invert"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Invert"
+                android:background="@drawable/oval" />
+
+            <Button
+                android:id="@+id/rotate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Rotate"
+                android:background="@drawable/oval"/>
+
+            <Button
+                android:id="@+id/feature"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="feature"
+                android:background="@drawable/oval"/>
+
+            <Button
+                android:id="@+id/saveImage"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/save_selector" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+
+
+
