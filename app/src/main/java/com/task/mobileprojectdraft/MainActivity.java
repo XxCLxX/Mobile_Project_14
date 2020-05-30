@@ -22,6 +22,7 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -143,7 +144,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Rotation Button
-        final Button rotateButton = findViewById(R.id.rotate);
+        //Algorithm = x' = x * cos - y * sin = [x']=[cos -sin] * [x]
+        //            y' = x * sin + y * cos   [y']=[sin  cos]   [y]
+        final ImageButton rotateButton = findViewById(R.id.rotate);
         rotateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         //Greyscale Button
-        Button greyscaleButton = findViewById(R.id.greyscale);
+        final Button greyscaleButton = findViewById(R.id.greyscale);
         greyscaleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,8 +248,59 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Sepia Button
+        //Resource - https://www.geeksforgeeks.org/image-procesing-java-set-6-colored-image-sepia-image-conversion/?ref=rp
+        final Button sepiaButton = findViewById(R.id.sepia);
+        sepiaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(){
+                    public void run(){
+                        for(int i = 0; i < bitmap.getWidth(); i++){
+                            for(int j = 0; j < bitmap.getHeight(); j++) {
+                                int pix = bitmap.getPixel(i, j);
+                                int R = Color.red(pix);
+                                int G = Color.green(pix);
+                                int B = Color.blue(pix);
+                                int A = Color.alpha(pix);
+
+                                int newR = (int)(0.393*R + 0.769*G + 0.189*B);
+                                int newG = (int)(0.349*R + 0.686*G + 0.168*B);
+                                int newB = (int)(0.272*R + 0.534*G + 0.131*B);
+
+                                if (newR > 255)
+                                    R = 255;
+                                else
+                                    R = newR;
+
+                                if (newG > 255)
+                                    G = 255;
+                                else
+                                    G = newG;
+
+                                if (newB > 255)
+                                    B = 255;
+                                else
+                                    B = newB;
+
+                                pix = (A<<24) | (R<<16) | (G<<8) | B;
+
+                                bitmap.setPixel(i, j, Color.argb(Color.alpha(pix), R, G, B));
+                            }
+                        }
+                        runOnUiThread(new Runnable(){
+                            @Override
+                            public void run(){
+                                imageView.setImageBitmap(bitmap);
+                            }
+                        });
+                    }
+                }.start();
+            }
+        });
+
         //Invert Button
-        Button invertButton = findViewById(R.id.invert);
+        final Button invertButton = findViewById(R.id.invert);
         invertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,6 +323,217 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable(){
                             @Override
                             public void run(){
+                                imageView.setImageBitmap(bitmap);
+                            }
+                        });
+                    }
+                }.start();
+            }
+        });
+
+        //Red Button
+        final Button redButton = findViewById(R.id.redFilter);
+        redButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(){
+                    @Override
+                    public void run(){
+                        for(int x = 0; x < width; x++)
+                        {
+                            for(int y=0; y < height; y++)
+                            {
+                                int pix = bitmap.getPixel(x, y);
+                                int R = Color.red(pix);
+                                int G = Color.green(pix);
+                                int B = Color.blue(pix);
+                                int A = Color.alpha(pix);
+
+                                R = R + 10; G = 0; B = 0; A = 0;
+                                bitmap.setPixel(x,y, Color.argb(Color.alpha(pix),R,G,B));
+                            }
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageBitmap(bitmap);
+                            }
+                        });
+                    }
+                }.start();
+            }
+        });
+
+        //Blue Button
+        final Button blueButton = findViewById(R.id.blueFilter);
+        blueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(){
+                    @Override
+                    public void run(){
+                        for(int x = 0; x < width; x++)
+                        {
+                            for(int y=0; y < height; y++)
+                            {
+                                int pix = bitmap.getPixel(x, y);
+                                int R = Color.red(pix);
+                                int G = Color.green(pix);
+                                int B = Color.blue(pix);
+                                int A = Color.alpha(pix);
+
+                                R = R = 0; G = 0; B = B + 10; A = 0;
+                                bitmap.setPixel(x,y, Color.argb(Color.alpha(pix),R,G,B));
+                            }
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageBitmap(bitmap);
+                            }
+                        });
+                    }
+                }.start();
+            }
+        });
+
+        //Green Button
+        final Button greenButton = findViewById(R.id.greenFilter);
+        greenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(){
+                    @Override
+                    public void run(){
+                        for(int x = 0; x < width; x++)
+                        {
+                            for(int y=0; y < height; y++)
+                            {
+                                int pix = bitmap.getPixel(x, y);
+                                int R = Color.red(pix);
+                                int G = Color.green(pix);
+                                int B = Color.blue(pix);
+                                int A = Color.alpha(pix);
+
+                                R = 0; G = G + 10; B = 0; A = 0;
+                                bitmap.setPixel(x,y, Color.argb(Color.alpha(pix),R,G,B));
+                            }
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageBitmap(bitmap);
+                            }
+                        });
+                    }
+                }.start();
+            }
+        });
+
+        //Brightness Button
+        final ImageButton brightButton = findViewById(R.id.brightness);
+        brightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(){
+                    @Override
+                    public void run(){
+                        for(int x = 0; x < width; x++)
+                        {
+                            for(int y=0; y < height; y++)
+                            {
+                                int pix = bitmap.getPixel(x, y);
+                                int A = Color.alpha(pix);
+                                int R = Color.red(pix);
+                                int G = Color.green(pix);
+                                int B = Color.blue(pix);
+
+                                int value = 15;
+                                R = R + value;
+                                if(R > 255){
+                                    R = 255;
+                                }
+                                else if(R < 0){
+                                    R = 0;
+                                }
+
+                                G = G + value;
+                                if(G > 255){
+                                    G = 255;
+                                }
+                                else if(G < 0){
+                                    G = 0;
+                                }
+
+                                B = B + value;
+                                if(B > 255){
+                                    B = 255;
+                                }
+                                else if(B < 0){
+                                    B = 0;
+                                }
+                                bitmap.setPixel(x, y, Color.argb(A, R, G, B));
+                            }
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageBitmap(bitmap);
+                            }
+                        });
+                    }
+                }.start();
+            }
+        });
+
+        //Darkness Button
+        final ImageButton darkButton = findViewById(R.id.darkness);
+        darkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(){
+                    @Override
+                    public void run(){
+                        for(int x = 0; x < width; x++)
+                        {
+                            for(int y=0; y < height; y++)
+                            {
+                                int pix = bitmap.getPixel(x, y);
+                                int A = Color.alpha(pix);
+                                int R = Color.red(pix);
+                                int G = Color.green(pix);
+                                int B = Color.blue(pix);
+
+                                int value = 15;
+                                R = R - value;
+                                if(R > 255){
+                                    R = 255;
+                                }
+                                else if(R < 0){
+                                    R = 0;
+                                }
+
+                                G = G - value;
+                                if(G > 255){
+                                    G = 255;
+                                }
+                                else if(G < 0){
+                                    G = 0;
+                                }
+
+                                B = B - value;
+                                if(B > 255){
+                                    B = 255;
+                                }
+                                else if(B < 0){
+                                    B = 0;
+                                }
+                                bitmap.setPixel(x, y, Color.argb(A, R, G, B));
+                            }
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
                                 imageView.setImageBitmap(bitmap);
                             }
                         });

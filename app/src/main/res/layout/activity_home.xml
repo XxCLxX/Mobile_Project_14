@@ -26,12 +26,12 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="218dp"
+        android:layout_height="213dp"
         android:layout_above="@+id/welcome"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="89dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="24dp"
         app:srcCompat="@drawable/project_icon" />
 
 </RelativeLayout>

@@ -78,7 +78,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="628dp"
+            android:layout_height="617dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter" />
@@ -94,6 +94,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/back_selector" />
+
+            <ImageButton
+                android:id="@+id/rotate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/oval"
+                android:src="@drawable/rotate_icon"
+
+                />
 
             <Button
                 android:id="@+id/greyscale"
@@ -112,19 +122,11 @@
                 android:background="@drawable/oval" />
 
             <Button
-                android:id="@+id/rotate"
+                android:id="@+id/sepia"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Rotate"
-                android:background="@drawable/oval"/>
-
-            <Button
-                android:id="@+id/feature"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="feature"
+                android:text="Sepia"
                 android:background="@drawable/oval"/>
 
             <Button
@@ -134,7 +136,50 @@
                 android:layout_weight="1"
                 android:background="@drawable/save_selector" />
 
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/redFilter"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:background="@drawable/oval"
+                android:text="Red"
+                android:textColor="#BF1509" />
+
+            <Button
+                android:id="@+id/blueFilter"
+                android:layout_width="68dp"
+                android:layout_height="50dp"
+                android:background="@drawable/oval"
+                android:text="Blue"
+                android:textColor="#2196F3" />
+
+            <Button
+                android:id="@+id/greenFilter"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:background="@drawable/oval"
+                android:text="Green"
+                android:textColor="#009688" />
+
+            <ImageButton
+                android:id="@+id/brightness"
+                android:layout_width="67dp"
+                android:layout_height="50dp"
+                android:background="@drawable/oval"
+                android:src="@drawable/brightness_icon"/>
+
+            <ImageButton
+                android:id="@+id/darkness"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:background="@drawable/oval"
+                android:src = "@drawable/darkness_icon"/>
         </LinearLayout>
 
     </LinearLayout>
